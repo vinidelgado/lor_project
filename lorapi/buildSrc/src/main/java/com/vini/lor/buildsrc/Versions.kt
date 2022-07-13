@@ -36,4 +36,5 @@ object Versions {
     const val glance = "1.0.0-alpha01"
     const val lifecycleRuntime = "2.3.1"
     const val material3 = "1.0.0-alpha13"
+    const val paging3 = "1.0.0-alpha02"
 }

@@ -72,6 +72,12 @@ dependencies {
     implementation(Dependencies.okHttp)
     implementation(Dependencies.okHttpLoggingInterceptor)
 
+    implementation(Dependencies.roomRuntime)
+    implementation(Dependencies.roomKtx)
+    kapt(Dependencies.roomCompiler)
+
+    implementation(Dependencies.paging3)
+
     testImplementation(Dependencies.junit4)
     androidTestImplementation(Dependencies.junitExtensions)
     androidTestImplementation(Dependencies.espressoCore)

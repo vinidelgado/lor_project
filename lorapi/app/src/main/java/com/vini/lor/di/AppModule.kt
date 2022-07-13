@@ -24,7 +24,7 @@ object AppModule {
         return Interceptor { chain ->
             val request =
                 chain.request().newBuilder()
-                    .header("X-Riot-Token", "key")
+                    .header("X-Riot-Token", "RGAPI-bbfdf2f8-bb08-4fcf-8505-fd8716ec837e")
                     .build()
             chain.proceed(request)
         }

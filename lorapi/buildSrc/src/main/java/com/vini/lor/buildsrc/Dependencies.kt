@@ -61,5 +61,6 @@ object Dependencies {
     const val testManifest = "androidx.compose.ui:ui-test-manifest:${Versions.composeVersion}"
     const val composeFundation = "androidx.compose.foundation:foundation:${Versions.composeVersion}"
     const val material3 = "androidx.compose.material3:material3:${Versions.material3}"
+    const val paging3 = "androidx.paging:paging-compose:${Versions.paging3}"
 
 }
