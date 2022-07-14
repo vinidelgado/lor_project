@@ -10,6 +10,7 @@ val gray700 = Color(0xFF646C81)
 val gray900 = Color(0xFF23262D)
 val black = Color(0xFF000000)
 val white = Color(0xFFFFFFFF)
+val purple900 =  Color(0xFF171138)
 
 internal val lightColors = lightColors(
     primary = black,
@@ -20,8 +21,8 @@ internal val lightColors = lightColors(
     onSecondary = black,
     surface = white,
     onSurface = black,
-    background = white,
-    onBackground = black,
+    background = purple900,
+    onBackground = purple900,
 )
 
 internal val darkColors = darkColors(
@@ -33,6 +34,6 @@ internal val darkColors = darkColors(
     onSecondary = black,
     surface = black,
     onSurface = white,
-    background = black,
-    onBackground = white,
+    background = purple900,
+    onBackground = purple900,
 )

@@ -37,4 +37,5 @@ object Versions {
     const val lifecycleRuntime = "2.3.1"
     const val material3 = "1.0.0-alpha13"
     const val paging3 = "1.0.0-alpha02"
+    const val windowSize = "1.0.0-alpha13"
 }
