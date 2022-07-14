@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.LORApi" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+    <!-- Allows us to override platform level specific attributes in their
+         respective values-vXX folder. -->
+    <style name="Platform.Theme.Lor" parent="Theme.Material3.DayNight">
+        <item name="android:statusBarColor">@color/purple_200</item>
     </style>
+
+    <!-- The actual theme we use. This varies for light theme (here),
+         and values-night for dark theme. -->
+    <!-- TODO Change colors here and in values-night when implementing M3 theme -->
+    <style name="Theme.Lor" parent="Platform.Theme.Lor">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+    </style>
+
+    <style name="Theme.Lor.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Lor.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="Theme.Lor.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 </resources>

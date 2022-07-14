@@ -26,17 +26,34 @@ import com.vini.lor.presentation.components.LorTopAppBar
 import com.vini.lor.ui.theme.typography
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
+@ExperimentalLayoutApi
 @Composable
 fun LeaderboardsScreen(
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
-        LeaderboardsTitle()
-        LeaderboardsContent()
+    Scaffold(
+        topBar = {
+            LeaderboardsTitle()
+        },
+        containerColor = Color.Transparent
+    ){ innerPadding ->
+        Text("Teste",modifier = modifier
+                .padding(innerPadding)
+                .consumedWindowInsets(innerPadding))
+        BoxWithConstraints(
+            modifier = modifier
+                .padding(innerPadding)
+                .consumedWindowInsets(innerPadding)
+        ) {
+            Column(
+                modifier = modifier,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
+                LeaderboardsContent()
+            }
+        }
     }
 }
 
@@ -55,6 +72,9 @@ fun LeaderboardsTitle() {
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = Color.Transparent
         ),
+        modifier = Modifier.windowInsetsPadding(
+            WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+        )
     )
 }
 

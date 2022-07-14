@@ -6,7 +6,7 @@ object Versions {
     const val kotlinVersion = "1.6.21"
     const val coreKtxVersion = "1.7.0"
     const val appCompatVersion = "1.4.1"
-    const val materialVersion = "1.5.0"
+    const val materialVersion = "1.6.1"
     const val junit4Version = "4.13.2"
     const val junitExtensionsVersion = "1.1.3"
     const val espressoCoreVersion = "3.4.0"
