@@ -17,6 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LORApi"
         tools:targetApi="31">
+        <profileable android:shell="true" tools:targetApi="q" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

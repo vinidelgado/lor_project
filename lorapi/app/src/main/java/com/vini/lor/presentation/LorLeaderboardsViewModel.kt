@@ -14,11 +14,41 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LorAmericasViewModel @Inject constructor(
+class LorLeaderboardsViewModel @Inject constructor(
     private val repository: LorRepository,
 ) : ViewModel() {
+
     var state by mutableStateOf(LorAmericasLeaderboards())
         private set
+
+    fun loadAmericasLeaderboardStream() {
+        viewModelScope.launch {
+            repository.fakeLeaderboardsStream().collect{ result ->
+                when(result) {
+                    is Resource.Success -> {
+                        result.data?.let { data ->
+                            state = state.copy(
+                                playersData = data,
+                                isLoading = false
+                            )
+                        }
+                    }
+                    is Resource.Error -> {
+                        state = state.copy(
+                            error = result.message,
+                            isLoading = false
+                        )
+                    }
+                    is Resource.Loading -> {
+                        state = state.copy(
+                            isLoading = true
+                        )
+                    }
+                }
+            }
+        }
+    }
+
 
     fun loadAmericasLeaderboard() {
         viewModelScope.launch {
@@ -60,41 +90,12 @@ class LorAmericasViewModel @Inject constructor(
 
     }
 
-    fun loadMockLeaderboard() {
-        val listPlayers = listOf(
-            AmericasLeaderboardsDataDto(name = "squallywag", rank = 1, 1200),
-            AmericasLeaderboardsDataDto(name = "MajiinBae", rank = 2, 1100),
-            AmericasLeaderboardsDataDto(name = "LuserBeam", rank = 3, 1000),
-            AmericasLeaderboardsDataDto(name = "420 DN Blaze It", rank = 4, 900),
-            AmericasLeaderboardsDataDto(name = "LiP", rank = 5, 800),
-            AmericasLeaderboardsDataDto(name = "WW Minasia", rank = 6, 600),
-            AmericasLeaderboardsDataDto(name = "Trivo", rank = 7, 600),
-            AmericasLeaderboardsDataDto(name = "HDR Dudu de Nunu", rank = 8, 600),
-            AmericasLeaderboardsDataDto(name = "ptash", rank = 9, 600),
-            AmericasLeaderboardsDataDto(name = "FloppyMudkip", rank = 10, 600),
-            AmericasLeaderboardsDataDto(name = "HDR Lazyguga", rank = 11, 600),
-            AmericasLeaderboardsDataDto(name = "Prodigy", rank = 12, 600),
-            AmericasLeaderboardsDataDto(name = "WW Seku", rank = 13, 600),
-            AmericasLeaderboardsDataDto(name = "AK KuroNE", rank = 14, 600),
-            AmericasLeaderboardsDataDto(name = "AK Tomaszamo", rank = 15, 600),
-            AmericasLeaderboardsDataDto(name = "NJay", rank = 16, 600),
-            AmericasLeaderboardsDataDto(name = "WW Jones", rank = 17, 600),
-            AmericasLeaderboardsDataDto(name = "AK KuroNElson", rank = 18, 600),
-            AmericasLeaderboardsDataDto(name = "AK Tomaszamo Nelson", rank = 19, 600),
-            AmericasLeaderboardsDataDto(name = "NJ", rank = 20, 600),
-        )
-        state = state.copy(
-            playersData = listPlayers,
-            isLoading = false,
-            error = null
-        )
-    }
 
 }
 
 data class LorAmericasLeaderboards(
     val playersData: List<AmericasLeaderboardsDataDto> = ArrayList(),
-    val selected:Int = -1,
+    val selected: Int = -1,
     val isLoading: Boolean = false,
     val error: String? = null
 )
