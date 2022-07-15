@@ -17,11 +17,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.vini.lor.R
 import com.vini.lor.data.remote.AmericasLeaderboardsDataDto
 import com.vini.lor.presentation.LorLeaderboardsViewModel
+import com.vini.lor.presentation.components.LorBackground
 import com.vini.lor.presentation.components.LorTopAppBar
 import com.vini.lor.ui.theme.typography
 import kotlinx.coroutines.launch
@@ -36,7 +38,8 @@ fun LeaderboardsScreen(
         topBar = {
             LeaderboardsTitle()
         },
-        containerColor = Color.Transparent
+        containerColor = Color.Transparent,
+        modifier = modifier.fillMaxSize()
     ){ innerPadding ->
         Text("Teste",modifier = modifier
                 .padding(innerPadding)
@@ -70,7 +73,10 @@ fun LeaderboardsTitle() {
             id = R.string.app_name
         ),
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = Color.Transparent
+            containerColor = Color(0xFF150C33),
+            scrolledContainerColor = Color.Red,
+            navigationIconContentColor = Color.Cyan,
+            titleContentColor = Color.Yellow,
         ),
         modifier = Modifier.windowInsetsPadding(
             WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
@@ -83,7 +89,7 @@ fun LeaderboardsContent(viewModel: LorLeaderboardsViewModel = hiltViewModel()) {
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     viewModel.loadAmericasLeaderboardStream()
-    Column(modifier = Modifier.background(Color(0xFF141136))) {
+    Column(modifier = Modifier.background(Color(0xFF19133D)).padding(vertical = 24.dp)) {
 
         if (viewModel.state.isLoading) {
             CircularProgressIndicator(
@@ -168,6 +174,14 @@ fun LeaderboardPlayersOthers(player: AmericasLeaderboardsDataDto) {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
+@Preview
+@Composable
+fun ScreenPreview(){
+    LorBackground{
+        LeaderboardsScreen()
+    }
+}
 
 
 
